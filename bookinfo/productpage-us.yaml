@@ -1,0 +1,12 @@
+apiVersion: gloo.solo.io/v1
+kind: Upstream
+metadata:
+  name: productpage
+  namespace: bookinfo
+spec:
+  kube:
+    selector:
+      app: productpage
+    serviceName: productpage
+    serviceNamespace: bookinfo
+    servicePort: 9080

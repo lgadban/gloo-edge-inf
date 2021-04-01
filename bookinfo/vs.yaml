@@ -13,6 +13,6 @@ spec:
       routeAction:
         single:
           upstream:
-            name: bookinfo-productpage-9080
-            namespace: gloo-system
+            name: productpage
+            namespace: bookinfo
 
