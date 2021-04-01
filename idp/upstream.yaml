@@ -1,0 +1,16 @@
+apiVersion: gloo.solo.io/v1
+kind: Upstream
+metadata:
+  name: keycloak
+  namespace: gloo-system
+spec:
+  useHttp2: true
+  sslConfig: {}
+  kube:
+    selector:
+      app: keycloak
+      component: keycloak
+    serviceName: keycloak
+    serviceNamespace: keycloak
+    servicePort: 8443
+

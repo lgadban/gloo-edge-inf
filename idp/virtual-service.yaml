@@ -1,0 +1,18 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  virtualHost:
+    domains:
+    - 'idp.104-154-163-0.nip.io'
+    routes:
+    - matchers:
+      - prefix: /
+      routeAction:
+        single:
+          upstream:
+            name: keycloak
+            namespace: gloo-system
+
