@@ -11,8 +11,15 @@ spec:
     - matchers:
         - prefix: /
       routeAction:
-        single:
-          upstream:
-            name: productpage
-            namespace: bookinfo
-
+        multi:
+          destinations:
+          - weight: 5
+            destination:
+              upstream:
+                name: productpage
+                namespace: bookinfo
+          - weight: 5
+            destination:
+              upstream:
+                name: productpage-beta
+                namespace: bookinfo-beta
