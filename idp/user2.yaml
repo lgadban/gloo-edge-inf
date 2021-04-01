@@ -1,0 +1,22 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakUser
+metadata:
+  name: user2
+  namespace: keycloak
+  labels:
+    app: keycloak-minimal
+spec:
+  user:
+    username: "user2"
+    firstName: "John"
+    lastName: "Doe"
+    email: "user2@solo.io"
+    enabled: True
+    emailVerified: True
+    credentials:
+      - type: "password"
+        value: "pass"
+        temporary: false
+  realmSelector:
+    matchLabels:
+      app: keycloak-minimal

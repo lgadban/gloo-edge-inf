@@ -1,0 +1,22 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakUser
+metadata:
+  name: user
+  namespace: keycloak
+  labels:
+    app: keycloak-minimal
+spec:
+  user:
+    username: "user"
+    firstName: "User"
+    lastName: "User"
+    email: "creds_user@redhat.com"
+    enabled: True
+    emailVerified: True
+    credentials:
+      - type: "password"
+        value: "pass"
+        temporary: false
+  realmSelector:
+    matchLabels:
+      app: keycloak-minimal
