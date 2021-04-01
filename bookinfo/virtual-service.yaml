@@ -4,6 +4,10 @@ metadata:
   name: bookinfo
   namespace: bookinfo
 spec:
+  sslConfig:
+    secretRef:
+      name: bookinfo-tls
+      namespace: bookinfo
   virtualHost:
     domains:
     - 'bookinfo.104-154-163-0.nip.io'
