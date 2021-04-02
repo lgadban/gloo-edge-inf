@@ -1,0 +1,22 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: httpbin
+  namespace: httpbin
+spec:
+  virtualHost:
+    domains:
+    - 'httpbin.104-154-163-0.nip.io'
+    options:
+      extauth:
+        configRef:
+          name: httpbin-oauth
+          namespace: httpbin
+    routes:
+    - matchers:
+        - prefix: /
+      routeAction:
+        single:
+          upstream:
+            name: httpbin
+            namespace: httpbin

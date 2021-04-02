@@ -1,0 +1,18 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakClient
+metadata:
+  name: httpbin-client
+  namespace: keycloak
+  labels:
+    app: keycloak-minimal
+spec:
+  realmSelector:
+    matchLabels:
+      app: keycloak-minimal
+  client:
+    clientId: httpbin-client
+    secret: client-secret
+    standardFlowEnabled: true
+    redirectUris:
+    - http://httpbin.104-154-163-0.nip.io/*
+

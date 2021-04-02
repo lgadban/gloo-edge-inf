@@ -1,0 +1,22 @@
+apiVersion: enterprise.gloo.solo.io/v1
+kind: AuthConfig
+metadata:
+  name: httpbin-oauth
+  namespace: httpbin
+spec:
+  configs:
+  - oauth2:
+      oidcAuthorizationCode:
+        appUrl: http://httpbin.104-154-163-0.nip.io/
+        callbackPath: /callback
+        clientId: httpbin-client
+        clientSecretRef:
+          name: httpbin-client
+          namespace: httpbin
+        issuerUrl: http://idp.104-154-163-0.nip.io/auth/realms/default
+        scopes:
+        - email
+        session:
+          cookieOptions:
+            notSecure: true
+
