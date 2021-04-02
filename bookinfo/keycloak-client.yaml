@@ -1,0 +1,18 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakClient
+metadata:
+  name: bookinfo-client
+  namespace: keycloak
+  labels:
+    app: keycloak-minimal
+spec:
+  realmSelector:
+    matchLabels:
+      app: keycloak-minimal
+  client:
+    clientId: bookinfo-client
+    secret: client-secret
+    standardFlowEnabled: true
+    redirectUris:
+    - https://bookinfo.104-154-163-0.nip.io/*
+

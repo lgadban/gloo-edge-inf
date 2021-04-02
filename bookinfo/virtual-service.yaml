@@ -11,6 +11,11 @@ spec:
   virtualHost:
     domains:
     - 'bookinfo.104-154-163-0.nip.io'
+    options:
+      extauth:
+        configRef:
+          name: bookinfo-oauth
+          namespace: bookinfo
     routes:
     - matchers:
         - prefix: /

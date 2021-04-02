@@ -1,0 +1,19 @@
+apiVersion: enterprise.gloo.solo.io/v1
+kind: AuthConfig
+metadata:
+  name: bookinfo-oauth
+  namespace: bookinfo
+spec:
+  configs:
+  - oauth2:
+      oidcAuthorizationCode:
+        appUrl: https://bookinfo.104-154-163-0.nip.io/productpage
+        callbackPath: /callback
+        clientId: bookinfo-client
+        clientSecretRef:
+          name: bookinfo-client
+          namespace: bookinfo
+        issuerUrl: http://idp.104-154-163-0.nip.io/auth/realms/default
+        scopes:
+        - email
+
