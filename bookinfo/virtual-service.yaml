@@ -27,6 +27,12 @@ spec:
             # Turn rule engine on
             SecRuleEngine On
             SecRule ARGS:/username/ "[^a-zA-Z]" "t:none,phase:2,deny,id:6,log,msg:'allow only letters in username'"
+      transformations:
+        responseTransformation:
+          transformationTemplate:
+            parseBodyBehavior: DontParse
+            body:
+              text: '{% if header(":status") == "429" %}<html><body style="background-color:powderblue;"><h1>Too many Requests!</h1><p>Try again after 10 seconds</p></body></html>{% else %}{{ body() }}{% endif %}'
     routes:
     - matchers:
         - prefix: /
