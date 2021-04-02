@@ -48,6 +48,17 @@ spec:
                 upstreamRef:
                   name: keycloak
                   namespace: gloo-system
+      rbac:
+        policies:
+          viewer:
+            permissions:
+              methods:
+              - GET
+              pathPrefix: /get
+            principals:
+            - jwtPrincipal:
+                claims:
+                  email: user1@solo.io
     routes:
     - matchers:
         - prefix: /
