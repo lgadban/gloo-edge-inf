@@ -16,6 +16,10 @@ spec:
         configRef:
           name: bookinfo-oauth
           namespace: bookinfo
+      rateLimitConfigs:
+        refs:
+        - name: global-limit
+          namespace: bookinfo
     routes:
     - matchers:
         - prefix: /
