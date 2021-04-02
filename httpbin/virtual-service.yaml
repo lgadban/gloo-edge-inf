@@ -30,6 +30,24 @@ spec:
       headerManipulation:
         requestHeadersToRemove:
         - "cookie"
+      jwt:
+        providers:
+          keycloak:
+            issuer: http://idp.104-154-163-0.nip.io/auth/realms/default
+            tokenSource:
+              headers:
+              - header: Jwt
+            claimsToHeaders:
+            - claim: email
+              header: x-solo-claim-email
+            - claim: email_verified
+              header: x-solo-claim-email-verified
+            jwks:
+              remote:
+                url: http://idp.104-154-163-0.nip.io/auth/realms/default/protocol/openid-connect/certs
+                upstreamRef:
+                  name: keycloak
+                  namespace: gloo-system
     routes:
     - matchers:
         - prefix: /
