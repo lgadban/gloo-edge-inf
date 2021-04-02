@@ -12,6 +12,24 @@ spec:
         configRef:
           name: httpbin-oauth
           namespace: httpbin
+      # extract id token
+      stagedTransformations:
+        early:
+          requestTransforms:
+            - requestTransformation:
+                transformationTemplate:
+                  extractors:
+                    token:
+                      header: 'cookie'
+                      regex: 'id_token=(.*); .*'
+                      subgroup: 1
+                  headers:
+                    jwt:
+                      text: '{{ token }}'
+      # remove cookie header
+      headerManipulation:
+        requestHeadersToRemove:
+        - "cookie"
     routes:
     - matchers:
         - prefix: /
