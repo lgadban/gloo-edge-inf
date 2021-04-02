@@ -1,0 +1,23 @@
+apiVersion: gateway.solo.io/v1
+kind: RouteTable
+metadata:
+  name: productpage
+  namespace: bookinfo
+spec:
+  routes:
+  - matchers:
+      - prefix: /
+    routeAction:
+      multi:
+        destinations:
+        - weight: 5
+          destination:
+            upstream:
+              name: productpage
+              namespace: bookinfo
+        - weight: 5
+          destination:
+            upstream:
+              name: productpage-beta
+              namespace: bookinfo-beta
+
